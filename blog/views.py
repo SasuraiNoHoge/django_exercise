@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect # <<<<<<<<<<<< 
 from .models import Post
 from django.utils import timezone
 from .forms import PostCreateForm
+from .forms import PhotoForm
 
 def posts(request):
     posts = Post.objects.filter(
@@ -25,3 +26,10 @@ def post_create(request):
     else:
         form = PostCreateForm()
     return render(request, 'blog/post_create.html', {'form': form})
+
+
+def index(req):
+    if req.method == 'GET':
+        return render(req, 'myapp/index.html', {
+            'form': PhotoForm(),
+        })
